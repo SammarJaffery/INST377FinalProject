@@ -1,23 +1,26 @@
 {
-  "name": "inst377-week13-sampleapp-fa26",
+  "name": "inst377-final-project",
   "version": "1.0.0",
-  "description": "INST377 - Week 13 Sample App",
+  "description": "INST377-Final Project",
   "homepage": "https://github.com/anmoldash98/inst377-week13-sampleapp-fa26#readme",
   "bugs": {
     "url": "https://github.com/anmoldash98/inst377-week13-sampleapp-fa26/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/anmoldash98/inst377-week13-sampleapp-fa26.git"
+    "url": "git+https://github.com/SammarJaffery/INST377FinalProject.git"
   },
   "license": "ISC",
-  "author": "Anmol Dash",
+  "author": "Sammar Jaffery and Layan Atiya",
   "type": "commonjs",
   "main": "index.js",
+
   "scripts": {
-    "start": "nodemon -e '*'",
+    "start": "node index.js",
+    "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+
   "dependencies": {
     "@supabase/supabase-js": "^2.104.1",
     "body-parser": "^2.2.2",

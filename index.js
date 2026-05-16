@@ -11,12 +11,20 @@ dotenv.config();
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public'));
 
+app.get('/test', (req, res) => {
+  res.send('Test route is working');
+});
+
 const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseKey = process.env.SUPABASE_KEY;
 const supabase = supabaseClient.createClient(supabaseUrl, supabaseKey);
+/*
+app.get('/', (req, res) => {
+  res.sendFile('/public/homepage.html', { root: __dirname });
+});*/
 
 app.get('/', (req, res) => {
-  res.sendFile('public/Customers.html', { root: __dirname });
+  res.sendFile(__dirname + '/public/homepage.html');
 });
 
 app.get('/customers', async (req, res) => {

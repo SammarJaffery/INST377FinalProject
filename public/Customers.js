@@ -1,3 +1,4 @@
+
 async function createCustomer() {
   await fetch(`/customer`, {
     method: 'POST',
