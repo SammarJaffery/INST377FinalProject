@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Climate Risk Report</title>
+
+  <link rel="stylesheet" href="style.css" />
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  />
+</head>
+<body>
+  <header class="site-header">
+    <nav class="navbar">
+      <h2 class="logo">Climate Risk Intelligence</h2>
+
+      <div class="nav-links">
+        <a href="homepage.html">Home</a>
+        <a href="report.html">Report</a>
+        <a href="about.html">About</a>
+        <a href="help.html">Help</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="report-main">
+
+    <section class="report-header">
+      <h1>Climate Risk Report</h1>
+      <p id="reportLocation">Loading location...</p>
+    </section>
+
+    <section class="report-grid">
+
+        <div class="report-card">
+
+            <h2>Risk Score</h2>
+            <p id="riskScore">Not calculated yet</p>
+
+            <button id="saveReportButton" class="save-button">
+                Save Report
+            </button>
+
+            <p id="saveMessage" class="message"></p>
+        </div>
+
+        <div class="report-card">
+            <h2>Current Weather</h2>
+            <p id="currentWeather">Weather data will appear here.</p>
+        </div>
+
+        <div class="report-card">
+            <h2>Temperature Trends</h2>
+            <p id="temperatureTrends">Temperature trend data will appear here.</p>
+        </div>
+
+        <div class="report-card">
+            <h2>Precipitation Trends</h2>
+            <p id="precipitationTrends">Precipitation data will appear here.</p>
+        </div>
+    </section>
+
+    <section class="charts-section">
+        <h2>Weather Forecast Visualizations</h2>
+
+        <div class="charts-grid">
+            <div class="chart-card">
+            <h3>Daily High Temperature Forecast</h3>
+            <canvas id="temperatureChart"></canvas>
+            </div>
+
+            <div class="chart-card">
+            <h3>Daily Precipitation Forecast</h3>
+            <canvas id="precipitationChart"></canvas>
+            </div>
+        </div>
+    </section>
+
+    <section class="map-section">
+        <h2>Location Map</h2>
+
+        <div class="map-card">
+            <div id="map"></div>
+        </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>INST377 Final Project | Sammar Jaffery and Layan Atiya</p>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+  </script>
+
+  <script src="report.js"></script>
+
+</body>
+</html>

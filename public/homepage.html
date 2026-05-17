@@ -1,10 +1,99 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Final Project</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Climate Risk Intelligence</title>
+
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>Homepage is working!</h1>
+  <header class="site-header">
+    <nav class="navbar">
+      <h2 class="logo">Climate Risk Intelligence</h2>
+
+      <div class="nav-links">
+        <a href="homepage.html">Home</a>
+        <a href="report.html">Report</a>
+        <a href="about.html">About</a>
+        <a href="help.html">Help</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero-section">
+      <div class="hero-text">
+        <h1>Understand climate risks before they affect you.</h1>
+
+        <p>
+          Search for a city or location to view weather patterns, climate trends,
+          and possible risk factors for that area.
+        </p>
+
+        <div class="search-card">
+          <label for="locationInput">Enter a city or location:</label>
+
+          <div class="search-row">
+            <input
+              type="text"
+              id="locationInput"
+              placeholder="Example: College Park"
+            />
+
+            <button id="generateReportButton">
+              Generate Report
+            </button>
+          </div>
+
+          <p id="searchMessage" class="message"></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="info-section">
+      <div class="info-card">
+        <h3>Location-Based Search</h3>
+        <p>
+          Users can search for a city or place and receive climate-related information
+          for that area.
+        </p>
+      </div>
+
+      <div class="info-card">
+        <h3>Weather & Climate Data</h3>
+        <p>
+          The app will use weather APIs to display temperature, precipitation,
+          and other climate risk indicators.
+        </p>
+      </div>
+
+      <div class="info-card">
+        <h3>Risk Summary</h3>
+        <p>
+          The final report will summarize climate risk levels in a simple,
+          easy-to-understand format.
+        </p>
+      </div>
+    </section>
+
+    <section class="saved-reports-section">
+        <h2>Recent Saved Reports</h2>
+        <p class="section-description">
+            View recently generated climate risk reports saved to the database.
+        </p>
+
+        <div id="savedReportsList" class="saved-reports-list">
+            <p>Loading saved reports...</p>
+        </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>INST377 Final Project | Sammar Jaffery and Layan Atiya</p>
+  </footer>
+
+  <script src="homepage.js"></script>
 </body>
 </html>
-
