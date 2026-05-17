@@ -65,11 +65,18 @@ function displayWeatherData(locationData, weatherData) {
   const averageMaxTemp = calculateAverage(maxTemps);
   const averageMinTemp = calculateAverage(minTemps);
   const totalPrecipitation = calculateTotal(precipitation);
+  const highestTemp = Math.max(...maxTemps);
+  const lowestTemp = Math.min(...minTemps);
+  const temperatureSwing = highestTemp - lowestTemp;
+  
 
   temperatureTrends.innerHTML = `
-    Average High This Week: ${averageMaxTemp.toFixed(1)}°F<br>
-    Average Low This Week: ${averageMinTemp.toFixed(1)}°F<br>
-    Highest Forecasted Temp: ${Math.max(...maxTemps)}°F
+    <strong>7-Day Forecast Period</strong><br>
+    Average High: ${averageMaxTemp.toFixed(1)}°F<br>
+    Average Low: ${averageMinTemp.toFixed(1)}°F<br>
+    Highest Forecasted Temp: ${highestTemp.toFixed(1)}°F<br>
+    Lowest Forecasted Temp: ${lowestTemp.toFixed(1)}°F<br>
+    Temperature Swing: ${temperatureSwing.toFixed(1)}°F
   `;
 
   precipitationTrends.innerHTML = `
@@ -79,11 +86,16 @@ function displayWeatherData(locationData, weatherData) {
 
   const calculatedRiskScore = calculateRiskScore(
     averageMaxTemp,
+    averageMinTemp,
     totalPrecipitation,
-    current.wind_speed_10m
+    current.wind_speed_10m,
+    temperatureSwing
   );
 
-  riskScore.textContent = calculatedRiskScore;
+  riskScore.innerHTML = `
+    <span class="risk-level">${calculatedRiskScore.level}</span><br>
+    <span class="risk-factors">Main factors: ${calculatedRiskScore.factors.join(', ')}</span>
+  `;
 
   createCharts(daily);
 
@@ -95,7 +107,7 @@ function displayWeatherData(locationData, weatherData) {
     country: locationData.country,
     latitude: locationData.latitude,
     longitude: locationData.longitude,
-    risk_score: calculatedRiskScore,
+    risk_score: `${calculatedRiskScore.level} Risk: ${calculatedRiskScore.factors.join(', ')}`,
     temperature: current.temperature_2m,
     precipitation: current.precipitation,
     wind_speed: current.wind_speed_10m,
@@ -111,22 +123,89 @@ function calculateTotal(numbers) {
   return numbers.reduce((sum, number) => sum + number, 0);
 }
 
-function calculateRiskScore(averageMaxTemp, totalPrecipitation, windSpeed) {
-  let score = 'Low';
+function calculateRiskScore(averageMaxTemp, averageMinTemp, totalPrecipitation, windSpeed, temperatureSwing) {
+  let points = 0;
+  const factors = [];
 
-  if (averageMaxTemp >= 90 || totalPrecipitation >= 1 || windSpeed >= 25) {
-    score = 'Medium';
+  // Heat risk
+  if (averageMaxTemp >= 100) {
+    points += 3;
+    factors.push('extreme heat');
+  } else if (averageMaxTemp >= 95) {
+    points += 2;
+    factors.push('high heat');
+  } else if (averageMaxTemp >= 90) {
+    points += 1;
+    factors.push('moderate heat');
   }
 
-  if (averageMaxTemp >= 95 || totalPrecipitation >= 2 || windSpeed >= 35) {
-    score = 'High';
+  // Cold risk
+  if (averageMinTemp <= 10) {
+    points += 3;
+    factors.push('extreme cold');
+  } else if (averageMinTemp <= 20) {
+    points += 2;
+    factors.push('high cold');
+  } else if (averageMinTemp <= 32) {
+    points += 1;
+    factors.push('freezing temperatures');
   }
 
-  if (averageMaxTemp >= 100 || totalPrecipitation >= 3 || windSpeed >= 45) {
-    score = 'Extreme';
+  // Precipitation risk
+  if (totalPrecipitation >= 3) {
+    points += 3;
+    factors.push('heavy precipitation');
+  } else if (totalPrecipitation >= 2) {
+    points += 2;
+    factors.push('elevated precipitation');
+  } else if (totalPrecipitation >= 1) {
+    points += 1;
+    factors.push('moderate precipitation');
   }
 
-  return score;
+  // Wind risk
+  if (windSpeed >= 45) {
+    points += 3;
+    factors.push('extreme wind');
+  } else if (windSpeed >= 35) {
+    points += 2;
+    factors.push('high wind');
+  } else if (windSpeed >= 25) {
+    points += 1;
+    factors.push('moderate wind');
+  }
+
+  // Temperature fluctuation risk
+  if (temperatureSwing >= 45) {
+    points += 3;
+    factors.push('extreme temperature swing');
+  } else if (temperatureSwing >= 35) {
+    points += 2;
+    factors.push('large temperature swing');
+  } else if (temperatureSwing >= 25) {
+    points += 1;
+    factors.push('moderate temperature swing');
+  }
+
+  let level = 'Low';
+
+  if (points >= 9) {
+    level = 'Extreme';
+  } else if (points >= 6) {
+    level = 'High';
+  } else if (points >= 3) {
+    level = 'Medium';
+  }
+
+  if (factors.length === 0) {
+    factors.push('no major short-term weather risks detected');
+  }
+
+  return {
+    level: level,
+    points: points,
+    factors: factors,
+  };
 }
 
 async function saveReport() {
@@ -181,10 +260,22 @@ function createTemperatureChart(daily) {
           borderWidth: 2,
           tension: 0.3,
         },
+        {
+          label: 'Daily Low Temperature (°F)',
+          data: daily.temperature_2m_min,
+          borderWidth: 2,
+          tension: 0.3,
+        },
       ],
     },
     options: {
       responsive: true,
+      plugins: {
+        title: {
+          display: true,
+          text: '7-Day High and Low Temperature Forecast',
+        },
+      },
     },
   });
 }

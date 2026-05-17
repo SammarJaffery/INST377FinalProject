@@ -517,3 +517,20 @@ footer {
     font-size: 34px;
   }
 }
+
+.method-section {
+  margin-top: 20px;
+  margin-bottom: 24px;
+  padding: 16px;
+  background-color: #ffffff;
+  border-radius: 8px;
+}
+
+.method-section h2 {
+  margin-top: 0;
+}
+
+.method-section p {
+  margin-bottom: 0;
+  line-height: 1.5;
+}
