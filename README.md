@@ -4,7 +4,7 @@
 
 ## Project Description
 
-Climate Risk Intelligence is a web application that allows users to search for a city or location and generate a simple climate risk report. The app displays location data, current weather conditions, temperature and precipitation forecast trends, a basic climate risk score, forecast charts, and an interactive map. Users can also save generated reports to a Supabase database and view recently saved reports on the homepage.
+Climate Risk Intelligence is a web application that allows users to search for a city or location and generate a simple climate risk report. The app displays location data, current weather conditions, weekly temperature and precipitation forecast trends, a simple weather risk score, forecast charts, and an interactive map. Users can also save generated reports to a Supabase database and view recently saved reports on the homepage.
 
 This project was created for INST377 as a Node.js web application using HTML, CSS, JavaScript, Express, Supabase, Open-Meteo, Chart.js, and Leaflet.js.
 
@@ -84,8 +84,9 @@ http://localhost:3000
 If using nodemon for development, you can run:
 
 ```bash
-npm run dev
+npm start
 ```
+then open site in browser at http://localhost:3000
 
 ## Running Tests
 
@@ -220,7 +221,7 @@ Suggested table columns:
 Future improvements could include:
 
 - Adding historical climate data for long-term trend analysis.
-- Improving the climate risk formula with more detailed climate indicators.
+- Adding separate risk categories for heat, cold, precipitation, flooding, wind, and storms.
 - Adding separate risk categories for heat, precipitation, flooding, wind, and storms.
 - Adding NOAA or OpenWeather data for more complete weather and climate information.
 - Allowing users to delete or update saved reports.
