@@ -534,3 +534,115 @@ footer {
   margin-bottom: 0;
   line-height: 1.5;
 }
+
+.site-header {
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.14);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  letter-spacing: 0.3px;
+}
+
+.nav-links a {
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+.nav-links a:hover {
+  opacity: 0.85;
+  text-decoration: none;
+}
+
+.search-card,
+.info-card,
+.report-card,
+.saved-report-card,
+.about-card,
+.help-card,
+.chart-card,
+.map-card,
+.method-section {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.search-card:hover,
+.info-card:hover,
+.report-card:hover,
+.saved-report-card:hover,
+.about-card:hover,
+.help-card:hover,
+.chart-card:hover,
+.map-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.11);
+}
+
+.search-row input {
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.search-row input:focus {
+  border-color: #2f7d4f;
+  box-shadow: 0 0 0 3px rgba(47, 125, 79, 0.16);
+}
+
+.search-row button,
+.save-button {
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.search-row button:hover,
+.save-button:hover {
+  transform: translateY(-1px);
+}
+
+.report-header {
+  background: linear-gradient(135deg, #ffffff, #eef7f1);
+  padding: 32px;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.07);
+}
+
+.report-card {
+  min-height: 190px;
+}
+
+#riskScore {
+  display: inline-block;
+  margin-top: 6px;
+  padding: 8px 12px;
+  background-color: #eef7f1;
+  border-radius: 999px;
+}
+
+.method-section {
+  border-left: 6px solid #2f7d4f;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.method-section h2 {
+  color: #12372a;
+  margin-bottom: 8px;
+}
+
+.method-section p {
+  color: #4b5a51;
+}
+
+.charts-section,
+.map-section {
+  padding-top: 10px;
+}
+
+.chart-card canvas {
+  margin-top: 10px;
+}
+
+.map-card {
+  border-left: 6px solid #2f7d4f;
+}
+
+
