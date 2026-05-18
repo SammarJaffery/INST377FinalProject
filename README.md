@@ -24,6 +24,7 @@ The site may also work on mobile browsers, but the primary target is desktop bro
 - GitHub Repository: https://github.com/SammarJaffery/INST377FinalProject
 - Deployed Vercel Site: finalproject-xi-eight.vercel.app
 - Developer Manual: [Developer Manual](#developer-manual)
+- Supabase Project: https://supabase.com/dashboard/project/pahlkjarwntfmxckxddt/editor/17625?schema=public 
 
 ---
 
